@@ -1,0 +1,1 @@
+I am studying software engineer now. When i was in college I studied Mathematics because I love things to do logically. Last year, when i search Youtube, i find out coding stuff. It seems like working logically.
