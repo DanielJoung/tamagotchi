@@ -72,10 +72,22 @@ span {
     font-weight: bold;
     font-size: 30px;
     width: 350px;
-    text-align: left;
+    text-align: center;
     background-color:aqua;
+    
 }
 
 .night {
     background-image: url("https://media.wired.com/photos/60c3cdb670822d686edc9fa7/master/pass/Gear-Digital-Pets.jpg");
+}
+
+.pet {
+    position: absolute;
+    bottom: 50%;
+    left: 45%;
+    
+}
+
+.pet-grow {
+    width: 20%;
 }
