@@ -66,8 +66,8 @@ span {
 
 .pet-name {
     position: absolute;
-    bottom: 90%;
-    left: 40%;
+    bottom: 100%;
+    left: 0%;
     background-color: white;
     color: black;
     font-weight: bold;
@@ -97,9 +97,12 @@ span {
 .pet {
     position: absolute;
     bottom: 50%;
-    left: 45%;
-    
+    left: 50%;
 }
+.pet-grow {
+    margin-left: 10%;
+}
+
 
 .green {
     border: 2px solid lightgreen;

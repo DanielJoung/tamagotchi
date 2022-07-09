@@ -13,7 +13,7 @@ picDiv.setAttribute("class","pet")
 img.setAttribute("class","pet-grow")
 div.setAttribute("class","pet-name")
 p.setAttribute("class","petName")
-divImg.appendChild(div)
+picDiv.appendChild(div)
 div.appendChild(p)
 picDiv.appendChild(img)
 document.body.appendChild(picDiv)
@@ -34,6 +34,7 @@ class game {
         p.innerHTML = `${this.petName} is happy!`
         img.src = "https://t1.daumcdn.net/cfile/tistory/23304148589F325A0B"
         img.width = 200
+        img.left = 50
 
         const sleepBtn = setInterval(() => {
             this.sleep--
@@ -52,6 +53,8 @@ class game {
             this.message()
             this.endGame()
             if (this.bored <= 0) {
+                clearInterval(playBtn)
+            }else if (document.querySelector(".night")) {
                 clearInterval(playBtn)
             }
         },5000)
@@ -109,7 +112,7 @@ class game {
                 img.width = 200
             }else if (this.age <20) {
                 img.src = "https://blog.kakaocdn.net/dn/wyEMX/btqX312cOlT/okLiICNmlOTeTvjt2hGN3k/img.jpg"
-                img.width = 250
+                img.width = 300
             }
             this.winGame()
         },8000)
