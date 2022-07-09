@@ -4,6 +4,7 @@
 body {
     background-color: skyblue;
     background-image: url("https://wallpaperaccess.com/full/2160740.jpg");
+    background-repeat:round;
 }
 
 .btns {
@@ -14,16 +15,16 @@ body {
 .img {
     position: relative;
     height: 1000px;
+    margin-top: 50px;
 }
 
 .text {
     position: absolute;
-    left: 8%;
-    background-color: white;
+    left: 2%;
     color: black;
     font-weight: bold;
     font-size: 30px;
-    width: 400px;
+    width: 300px;
     text-transform: capitalize;
     text-align: left;
     background-color: bisque;
@@ -65,7 +66,7 @@ span {
 
 .pet-name {
     position: absolute;
-    bottom: 30%;
+    bottom: 90%;
     left: 40%;
     background-color: white;
     color: black;
@@ -73,8 +74,20 @@ span {
     font-size: 30px;
     width: 350px;
     text-align: center;
-    background-color:aqua;
-    
+    background-color:aqua;   
+}
+
+.rule {
+    width: 100%;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+    background: bisque;
+    text-align: center;
+}
+.rule  p {
+    font-size: 20px;
+    padding-bottom: 4px;
 }
 
 .night {
@@ -88,6 +101,7 @@ span {
     
 }
 
-.pet-grow {
-    width: 20%;
+.green {
+    border: 2px solid lightgreen;
+    box-shadow: 0 0 5px lightgreen;
 }

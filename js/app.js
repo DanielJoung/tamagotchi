@@ -17,11 +17,7 @@ divImg.appendChild(div)
 div.appendChild(p)
 picDiv.appendChild(img)
 document.body.appendChild(picDiv)
-alert("Welcome to tamagotchi world")
-alert("Rule 1: Hunger, Sleepiness, Boredom decrease. When it goes 0, game is over")
-alert("Rule 2: You have to survive untill age hits 20")
-alert("Rule 3: If you click Feeding, Play With Pet, Light On/Off button, increase count")
-alert("press Start button, when you rea")
+
 
 
 class game {
@@ -37,17 +33,18 @@ class game {
         start.remove()
         p.innerHTML = `${this.petName} is happy!`
         img.src = "https://t1.daumcdn.net/cfile/tistory/23304148589F325A0B"
+        img.width = 200
+
         const sleepBtn = setInterval(() => {
             this.sleep--
             sleep.innerHTML = this.sleep;
             this.message()
-            his.endGame()
+            this.endGame()
             if (this.sleep <= 0) {
                 clearInterval(sleepBtn)
-            }else if (document.body.className === "night") {
-                clearInterval(sleepBtn)
             }
-        },8000)
+        },5000)
+        
 
         const playBtn = setInterval(() => {
             this.bored--
@@ -56,22 +53,19 @@ class game {
             this.endGame()
             if (this.bored <= 0) {
                 clearInterval(playBtn)
-            }else if (document.body.className === "night") {
-                clearInterval(playBtn)
             }
-        },8000)
+        },5000)
 
         const eatBtn = setInterval(() => {
             this.hunger--
             feeding.innerHTML = this.hunger;
             this.message()
-            his.endGame()
+            this.endGame()
             if (this.hunger <= 0) {
                 clearInterval(eatBtn)
             }
-        },6000)
+        },4000)
 
-        this.endGame()
         this.aged()
         
     }
@@ -94,7 +88,7 @@ class game {
                 if(document.body.className === "") {
                     clearInterval(sleepInterval)
                 }
-            },3000)
+            },1000)
         }
     }
 
@@ -109,13 +103,16 @@ class game {
             }
             if (this.age <= 6) {
                 img.src = "https://t1.daumcdn.net/cfile/tistory/23304148589F325A0B"
+                img.width = 200
             }else if (this.age <= 13) {
                 img.src = "https://t1.daumcdn.net/cfile/tistory/99693E415FA93FD733"
+                img.width = 200
             }else if (this.age <20) {
                 img.src = "https://blog.kakaocdn.net/dn/wyEMX/btqX312cOlT/okLiICNmlOTeTvjt2hGN3k/img.jpg"
+                img.width = 250
             }
             this.winGame()
-        },10000)
+        },8000)
     }
 
     message() {
@@ -131,11 +128,17 @@ class game {
     }
 
     endGame() {
-        if(this.hunger <= 0 || this.sleep <= 0 || this.bored <= 0) alert(`${this.petName} die`)
+        if(this.hunger <= 0 || this.sleep <= 0 || this.bored <= 0) {        
+            alert(`${this.petName} die`)
+            window.location.reload()
+        }
     }
 
     winGame() {
-        if(this.age === 20) alert(`${this.petName} is 20years old! You win!`)
+        if(this.age === 20) {
+            alert(`${this.petName} is 20years old! You win!`)
+            window.location.reload()
+        }
     }
     
 }    
@@ -150,22 +153,29 @@ const feeder = document.querySelector(".feeding")
 feeder.addEventListener("click",e => {
     e.preventDefault();
     me.feed()
+    feeder.classList.add("green")
+    setTimeout(() => {feeder.classList.remove("green")},800)
 })
 
 const start = document.querySelector(".start")
 start.addEventListener("click",e => {
     e.preventDefault()
     me.start()
+    start.classList.toggle("green")
 })
 
 const play = document.querySelector(".play")
 play.addEventListener("click",e => {
     e.preventDefault()
     me.bore()
+    play.classList.add("green")
+    setTimeout(() => {play.classList.remove("green")},800)
 })
 
 const light = document.querySelector(".light")
 light.addEventListener("click",e => {
     e.preventDefault()
     me.light()
+    light.classList.add("green")
+    setTimeout(() => {light.classList.remove("green")},800)
 })
