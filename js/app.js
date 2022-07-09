@@ -7,15 +7,22 @@ const name = document.querySelector(".pet-name")
 const divImg = document.querySelector(".img")
 const p = document.createElement("p")
 const div = document.createElement("div")
+const picDiv = document.createElement("div")
+const img = document.createElement("img")
+picDiv.setAttribute("class","pet")
+img.setAttribute("class","pet-grow")
 div.setAttribute("class","pet-name")
 p.setAttribute("class","petName")
 divImg.appendChild(div)
 div.appendChild(p)
+picDiv.appendChild(img)
+document.body.appendChild(picDiv)
 alert("Welcome to tamagotchi world")
 alert("Rule 1: Hunger, Sleepiness, Boredom decrease. When it goes 0, game is over")
 alert("Rule 2: You have to survive untill age hits 20")
 alert("Rule 3: If you click Feeding, Play With Pet, Light On/Off button, increase count")
 alert("press Start button, when you rea")
+
 
 class game {
     constructor(age=0,hunger=10,sleep=10,bored=10) {
@@ -28,38 +35,44 @@ class game {
     start() {
         this.petName = prompt("choose your pet name")
         start.remove()
+        p.innerHTML = `${this.petName} is happy!`
+        img.src = "https://t1.daumcdn.net/cfile/tistory/23304148589F325A0B"
         const sleepBtn = setInterval(() => {
             this.sleep--
             sleep.innerHTML = this.sleep;
             this.message()
+            his.endGame()
             if (this.sleep <= 0) {
                 clearInterval(sleepBtn)
             }else if (document.body.className === "night") {
                 clearInterval(sleepBtn)
             }
-        },12000)
+        },8000)
 
         const playBtn = setInterval(() => {
             this.bored--
             boredom.innerHTML = this.bored;
             this.message()
+            this.endGame()
             if (this.bored <= 0) {
                 clearInterval(playBtn)
             }else if (document.body.className === "night") {
                 clearInterval(playBtn)
             }
-        },10000)
+        },8000)
 
         const eatBtn = setInterval(() => {
             this.hunger--
             feeding.innerHTML = this.hunger;
             this.message()
+            his.endGame()
             if (this.hunger <= 0) {
                 clearInterval(eatBtn)
             }
-        },8000)
+        },6000)
 
-        aged(this.age)
+        this.endGame()
+        this.aged()
         
     }
     feed() {
@@ -85,6 +98,26 @@ class game {
         }
     }
 
+    aged() {
+        age.innerHTML = this.age
+        const ageInterval = setInterval(()=> {
+            this.age++
+            age.innerHTML = this.age
+
+            if(this.age >= 20) {
+                clearInterval(ageInterval)
+            }
+            if (this.age <= 6) {
+                img.src = "https://t1.daumcdn.net/cfile/tistory/23304148589F325A0B"
+            }else if (this.age <= 13) {
+                img.src = "https://t1.daumcdn.net/cfile/tistory/99693E415FA93FD733"
+            }else if (this.age <20) {
+                img.src = "https://blog.kakaocdn.net/dn/wyEMX/btqX312cOlT/okLiICNmlOTeTvjt2hGN3k/img.jpg"
+            }
+            this.winGame()
+        },10000)
+    }
+
     message() {
         if(this.hunger <=5) {
             p.innerHTML = `${this.petName} is hungry! Feed him`
@@ -99,38 +132,19 @@ class game {
 
     endGame() {
         if(this.hunger <= 0 || this.sleep <= 0 || this.bored <= 0) alert(`${this.petName} die`)
-        if (this.age === 20) alert(`${this.petName} max age! You win`)
+    }
+
+    winGame() {
+        if(this.age === 20) alert(`${this.petName} is 20years old! You win!`)
     }
     
 }    
 
 const me = new game()
-
-me.endGame()
 feeding.innerHTML = me.hunger
 boredom.innerHTML = me.bored
 sleep.innerHTML = me.sleep
 age.innerHTML = me.age
-
-
-
-function setTime (divEl,spanEl) {
-    const timer = setInterval(() => {
-        spanEl += 1
-        divEl.innerHTML = spanEl
-        if(spanEl <= 0) {
-            clearInterval(timer)
-        }
-    },1000)
-}
-
-function aged(str) {
-    age.innerHTML = str
-    setInterval(()=> {
-        str++
-        age.innerHTML = str
-    },10000)
-}
 
 const feeder = document.querySelector(".feeding")
 feeder.addEventListener("click",e => {
