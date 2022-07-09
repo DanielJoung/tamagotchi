@@ -1,4 +1,5 @@
 
+const btns = document.querySelector(".btns")
 const feeding = document.querySelector(".hunger")
 const sleep = document.querySelector(".sleep")
 const boredom = document.querySelector(".bore")
@@ -17,7 +18,6 @@ picDiv.appendChild(div)
 div.appendChild(p)
 picDiv.appendChild(img)
 document.body.appendChild(picDiv)
-
 
 
 class game {
@@ -54,8 +54,6 @@ class game {
             this.endGame()
             if (this.bored <= 0) {
                 clearInterval(playBtn)
-            }else if (document.querySelector(".night")) {
-                clearInterval(playBtn)
             }
         },5000)
 
@@ -85,14 +83,20 @@ class game {
     light() {
         document.body.classList.toggle("night")
         if (document.body.className === "night") {
-            const sleepInterval = setInterval(() => {
-                this.sleep++
-                sleep.innerHTML = this.sleep
-                if(document.body.className === "") {
-                    clearInterval(sleepInterval)
-                }
-            },1000)
+            feeder.remove()
+            play.remove()
+            btns.appendChild(sleeping)
+        }else if (document.body.className === "") {
+            btns.appendChild(feeder)
+            btns.appendChild(play)
+            sleeping.remove()
         }
+    }
+
+
+    sleeped() {
+        this.sleep++
+        sleep.innerHTML = this.sleep
     }
 
     aged() {
@@ -182,3 +186,12 @@ light.addEventListener("click",e => {
     light.classList.add("green")
     setTimeout(() => {light.classList.remove("green")},800)
 })
+
+const sleeping = document.querySelector(".sleeped")
+sleeping.addEventListener("click", e => {
+    e.preventDefault();
+    me.sleeped()
+    sleeping.classList.add("green")
+    setTimeout(() => {sleeping.classList.remove("green")},800)
+})
+sleeping.remove()
